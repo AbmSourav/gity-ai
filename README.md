@@ -2,7 +2,7 @@
 
 GityAI is a agentic AI tool that can automate Git workflows.
 
-![GityAI Demo](https://abmsourav.com/welcome/wp-content/uploads/2025/03/GityAI.mp4)
+[![GityAI Demo](https://abmsourav.com/welcome/wp-content/uploads/2025/03/GityAI-Cover.jpg)](https://abmsourav.com/welcome/wp-content/uploads/2025/03/GityAI.mp4)
 
 <br>
 
