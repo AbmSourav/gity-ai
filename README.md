@@ -12,7 +12,7 @@ GityAI is a agentic AI tool that can automate Git workflows.
 
 ## Installation
 
-Download the latest release from the [releases page]()
+Download the latest release from the [releases page](https://github.com/AbmSourav/gity-ai/releases/tag/1.0.0)
 
 Add the binary to your PATH or make a alias in `.bashrc` or `.zshrc`:
 
