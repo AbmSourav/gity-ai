@@ -1,4 +1,14 @@
 .DS_Store
 *.DS_Store
 
-release
+notes
+.env
+
+.gityAI
+
+main.php
+
+build
+build/*
+
+.gityai
