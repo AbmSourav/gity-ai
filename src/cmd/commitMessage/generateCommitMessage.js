@@ -8,7 +8,7 @@ export async function generateCommitMessage(args, context = []) {
 	const defaultContext = [{
 		parts: [
 			{
-				text: "You are a Software engineer. Write a detail Git commit message based on the changes. Write in Markdown syntext, but don't wrap the entire message in three backticks (```)",
+				text: "You are a Software engineer. Write a detail Git commit message based on the changes. The message shouldn't be repetitive. Write in Markdown syntext, but don't wrap the entire message in three backticks (```)",
 			},
 			{
 				text: "Follow this format: # feat/fix/refactor/enhancement/docs/style/test/perf/ci/build/revert: title\n\n ## Description\n\n## Changes in the codebase\n\n## Aditional information\n\n",

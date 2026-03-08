@@ -21,9 +21,8 @@ export async function prDescription(args) {
 	const commitListCmd = new Deno.Command("git", {
 		args: [
 			"log",
-			"remotes/origin/" + currentBranch,
-			"remotes/origin/" + branchName,
-			"--pretty=format:>> commit %h, Author: %an | Date: %cd %n%n%B"
+			"remotes/origin/" + branchName + '..' + "remotes/origin/" + currentBranch,
+			"--no-merges",
 		],
 		stdout: "piped",
 		stderr: "piped",
@@ -35,10 +34,10 @@ export async function prDescription(args) {
 	const prDescription = await generatePrDescription(args, [{
 		parts: [
 			{
-				text: "You are a Software engineer. Write a detail 'Pull Request description' based below commit messages",
+				text: "You are a Software engineer. Write a detail 'Pull Request description' based below commit messages. The description shouldn't be repetitive. Write in Markdown syntext, but don't wrap the entire message in three backticks (```)",
 			},
 			{
-				text: "Follow this format: # Title ## Context\n\n## Description\n\n## Changes in the codebase\n\n## Aditional information\n\n",
+				text: "Follow this format: # Title ## Context\n\n## Description\n\n## Changes in the codebase\n\n",
 			},
 			{ text: commitList },
 		],
