@@ -2,7 +2,7 @@ import { dbConnection } from "../helper/dbConnection.js";
 
 export async function geminiClient(content) {
 	const url = "https://generativelanguage.googleapis.com/v1beta";
-	const model = "/models/gemini-2.5-flash";
+	const model = "/models/gemini-3.5-flash";
 	const type = ":generateContent";
 
 	const kv = await dbConnection();
