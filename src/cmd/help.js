@@ -5,7 +5,9 @@ export function help() {
   Usage: gityai [command] [options]
 
   Commands:
-	setup		Setup GityAI with Gemini API Key
+	setup		Setup GityAI with Gemini/Claude API Key
+	model		Display available models and select one
+	model -a	Display available selected model
 	init, -i	Initialize GityAI for project
 
 	cm -s		Generate commit message and save in markdown file

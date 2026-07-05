@@ -1,9 +1,11 @@
-import { geminiClient } from "../../aiClients/geminiClient.js";
 import { spinner } from "../../terminalUI/spinner.js";
 import { saveCommitMessage } from "./saveCommitMessage.js";
+import { HttpClient } from "../../aiClients/httpClient.js";
 
 export async function generateCommitMessage(args, context = []) {
 	spinner.start();
+
+	const httpClient = new HttpClient();
 
 	const defaultContext = [{
 		parts: [
@@ -17,17 +19,10 @@ export async function generateCommitMessage(args, context = []) {
 		],
 	}];
 
-	const res = await geminiClient(defaultContext);
+	const req = await httpClient.request(defaultContext);
+	const commitMessage = await httpClient.response(req);
 
 	spinner.stop();
-
-	if (res.status !== 200) {
-		return console.error(await res.error());
-	}
-
-	const data = await res.json();
-
-	const commitMessage = data?.candidates[0]?.content?.parts[0]?.text ?? "";
 
 	if (!args?.s) {
 		console.log(
@@ -36,6 +31,7 @@ export async function generateCommitMessage(args, context = []) {
 		console.log(
 			"\x1b[90m Commit Message generated. Please review above content.\x1b[0m",
 		);
+		return;
 	}
 
 	await saveCommitMessage(args, commitMessage);

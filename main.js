@@ -3,5 +3,5 @@ import "jsr:@std/dotenv/load";
 import { command } from "./src/cmd/command.js";
 import { setAppVersion } from "./src/helper/setAppVersion.js";
 
-setAppVersion("1.1.2");
+setAppVersion("2.0");
 command();

@@ -25,17 +25,21 @@ export async function commitMessage(args) {
 	const context = [{text: diff }];
 	let commitMessage = await generateCommitMessage(args, context);
 
-	const selectedOption = selectPrompt("Select one of below", [
-		"* Happy with it",
-		"* Generate another one",
-		"* My prompt",
-	]);
+	// Keep refining until the user is happy with the generated message.
+	while (true) {
+		const selectedOption = selectPrompt("Select one of below", [
+			"* Happy with it",
+			"* Generate another one",
+			"* My prompt",
+		]);
 
-	if (selectedOption.trim() === "* Generate another one") {
-		commitMessage = await generateCommitMessage(args, context);
-	} else if (selectedOption.trim() === "* My prompt") {
-		await handlePrompt(args, diff, commitMessage);
-		Deno.exit(0);
+		if (selectedOption.trim() === "* Generate another one") {
+			commitMessage = await generateCommitMessage(args, context);
+		} else if (selectedOption.trim() === "* My prompt") {
+			commitMessage = await handlePrompt(args, diff, commitMessage);
+		} else {
+			break;
+		}
 	}
 
 	await makeCommit(args, commitMessage);
