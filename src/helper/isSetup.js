@@ -3,10 +3,12 @@ import { dbConnection } from "./dbConnection.js";
 
 export async function isSetup(args) {
 	const db = await dbConnection();
-	const apiKey = await db.get(["appSetup", "geminiApiKey"]);
+	const geminiApiKey = await db.get(["appSetup", "geminiApiKey"]);
+	const claudeApiKey = await db.get(["appSetup", "claudeApiKey"]);
 
 	if (
-		!apiKey?.value &&
+		!geminiApiKey?.value &&
+		!claudeApiKey?.value &&
 		(!args?.version || !args?.v) &&
 		args?._[0] !== 'help' &&
 		!args?.h

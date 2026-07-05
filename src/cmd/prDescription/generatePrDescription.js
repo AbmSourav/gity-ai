@@ -1,20 +1,28 @@
-import { geminiClient } from "../../aiClients/geminiClient.js";
 import { spinner } from "../../terminalUI/spinner.js";
+import { HttpClient } from "../../aiClients/httpClient.js";
+import { savePrDescription } from "./savePrDescription.js";
 
-export async function generatePrDescription(args, context = []) {
+export async function generatePrDescription(args, commitList) {
 	spinner.start();
 
-	const res = await geminiClient(context);
+	const context = [{
+		parts: [
+			{
+				text: "You are a Software engineer. Write a detail 'Pull Request description' based below commit messages. The description shouldn't be repetitive. Write in Markdown syntext, but don't wrap the entire message in three backticks (```)",
+			},
+			{
+				text: "Follow this format: # Title ## Context\n\n## Description\n\n## Changes in the codebase\n\n",
+			},
+			{ text: commitList },
+		],
+	}];
+
+	const httpClient = new HttpClient();
+
+	const req = await httpClient.request(context);
+	const prDescription = await httpClient.response(req);
 
 	spinner.stop();
-
-	if (res?.status !== 200) {
-		return console.error(await res?.error());
-	}
-
-	const data = await res.json();
-
-	const prDescription = data?.candidates[0]?.content?.parts[0]?.text ?? "";
 
 	if (!args?.s) {
 		console.log(
@@ -23,7 +31,10 @@ export async function generatePrDescription(args, context = []) {
 		console.log(
 			"\x1b[90m Pull Request Description generated. Please review above content.\x1b[0m",
 		);
+		return;
 	}
+
+	await savePrDescription(prDescription);
 
 	return prDescription;
 }

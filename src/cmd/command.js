@@ -3,6 +3,7 @@ import { parseArgs } from "jsr:@std/cli/parse-args";
 import { help } from "./help.js";
 import { version } from "./version.js";
 import { setup } from "./setup.js";
+import { model } from "./model.js";
 import { init } from "./init.js";
 import { commitMessage } from "./commitMessage.js";
 import { isSetup } from "../helper/isSetup.js";
@@ -20,6 +21,8 @@ export async function command() {
 
 	// Check if the user has setup the app before running any other command
 	await isSetup(args);
+
+	await model(args);
 
 	// initialize GityAI for project
 	await init(args);
