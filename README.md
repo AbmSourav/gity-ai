@@ -2,10 +2,13 @@
 
 GityAI is an agentic AI tool that automates Git workflows — it writes your commit messages and pull request descriptions from your actual code changes, and lets you "refine them in a loop" until they read exactly the way you want.
 
+> **Under the hood:** GityAI spans two JavaScript runtimes. The CLI is built in **Deno** and compiled to standalone, dependency-free native binaries for Linux, macOS, and Windows, using **Deno KV** for local state and a provider-agnostic client layer that routes to either Gemini or Claude. It's distributed through a separate tiny **Node.js** npm package that resolves the user's platform and pulls the matching binary from GitHub Releases at install time.
+
 <br>
 
 *Click on the below thumbnail to watch the Demo video*
-[![GityAI Demo](https://abmsourav.com/welcome/wp-content/uploads/2025/03/Screenshot-2025-03-12-at-3.11.39 PM.png)](https://abmsourav.com/welcome/wp-content/uploads/2026/07/GityAI.mp4)
+
+[![GityAI Demo](https://abmsourav.com/welcome/wp-content/uploads/2026/07/GityAI-thumbnail.png)](https://abmsourav.com/welcome/wp-content/uploads/2026/07/GityAI.mp4)
 
 <br>
 
@@ -18,28 +21,46 @@ GityAI is an agentic AI tool that automates Git workflows — it writes your com
 
 <br>
 
-## Download
-
-- Download [GityAI 2.0](https://github.com/AbmSourav/gity-ai/releases/tag/2.0) - *Latest*
-- Download [GityAI 1.1.2](https://github.com/AbmSourav/gity-ai/releases/tag/1.1.2)
-- Download [GityAI 1.1.1](https://github.com/AbmSourav/gity-ai/releases/tag/1.1.1)
-- Download [GityAI 1.1.0](https://github.com/AbmSourav/gity-ai/releases/tag/1.1.0)
-- Download [GityAI 1.0.0](https://github.com/AbmSourav/gity-ai/releases/tag/1.0.0)
-
-<br>
-
 ## Installation
 
-Download the latest release from the [releases page](https://github.com/AbmSourav/gity-ai/releases/tag/2.0) "Assets" section. GityAI supports Linux, MacOS, and Windows. Choose the appropriate binary for your system.
-Then unzip the downloaded file and move the `gityai` binary to a location of your choice and copy the path to it.
+There are two ways to install GityAI. Both support **Linux, macOS, and Windows**.
 
-Add the binary to your PATH or make a alias in `.bashrc` or `.zshrc`:
+### Option 1 — npm
+
+Install globally to use `gityai` anywhere:
+
+```bash
+npm install -g @abmsourav/gityai
+```
+
+On install, the prebuilt binary for your platform is downloaded automatically.
+
+You can also add it to a single project instead of installing globally:
+
+```bash
+npm install --save-dev @abmsourav/gityai
+# then run it with: npx gityai <command>
+```
+
+Verify the install:
+
+```bash
+gityai -v
+```
+
+### Option 2 — Manual binary
+
+Download the latest release from the [releases page](https://github.com/AbmSourav/gity-ai/releases/tag/2.1) "Assets" section and choose the binary for your system. Unzip it and move the `gityai` binary to a location of your choice.
+
+Add the binary to your PATH, or make an alias in `.bashrc` / `.zshrc`:
 
 ```bash
 alias gityai="path/to/gityai/gityai"
 ```
 
-Then run `gityai` on a newly open terminal to check if the installation was successful.
+Open a new terminal and run `gityai --version` to confirm the installation.
+
+> Your API keys and selected model are stored locally in `~/.gityai/`, no matter which installation method you use.
 
 <br>
 

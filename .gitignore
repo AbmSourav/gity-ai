@@ -12,3 +12,11 @@ build
 build/*
 
 .gityai
+
+# npm package: downloaded binary cache (generated, never committed)
+package/vendor
+package/vendor/*
+node_modules
+
+*.zip
+*.tgz

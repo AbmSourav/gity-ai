@@ -2,9 +2,10 @@ import { selectPrompt } from "../terminalUI/selectPrompt.js";
 import { generateCommitMessage } from "./commitMessage/generateCommitMessage.js";
 import { handlePrompt } from "./commitMessage/handlePrompt.js";
 import { makeCommit } from "./commitMessage/makeCommit.js";
+import { verifyArgs } from "../helper/verifyArgs.js";
 
 export async function commitMessage(args) {
-	if (args?._[0] !== "cm") {
+	if (!verifyArgs(args, 'cm')) {
 		return;
 	}
 

@@ -2,9 +2,10 @@ import { dbConnection } from "../helper/dbConnection.js";
 import modelEnum from "../helper/modelEnum.js";
 import { selectPrompt } from "../terminalUI/selectPrompt.js";
 import { drawBox } from "../terminalUI/drowBox.js";
+import { verifyArgs } from "../helper/verifyArgs.js";
 
 export async function model(args) {
-	if (args?._[0] !== "model") {
+	if (!verifyArgs(args, 'model')) {
 		return;
 	}
 

@@ -1,8 +1,16 @@
 import * as path from "jsr:@std/path";
 
+// Store the database in a stable per-user location (~/.gityai)
+function gityaiDir() {
+	const home = Deno.env.get("HOME") ?? Deno.env.get("USERPROFILE");
+	return path.join(home, ".gityai");
+}
+
 export async function dbConnection() {
-	const rootDir = path.dirname(Deno.execPath());
-	const dbPath = rootDir + "/gityai_db.sqlite3";
+	const dir = gityaiDir();
+	await Deno.mkdir(dir, { recursive: true });
+
+	const dbPath = path.join(dir, "gityai_db.sqlite3");
 
 	const dbExists = await Deno.stat(dbPath)
 		.then((fileInfo) => fileInfo)

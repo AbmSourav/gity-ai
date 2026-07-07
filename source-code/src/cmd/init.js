@@ -1,7 +1,8 @@
 import { findContentInFile } from "../helper/findContentInFile.js";
+import { verifyArgs } from "../helper/verifyArgs.js";
 
 export async function init(args) {
-	if (args?._[0] !== "init" && !args?.i) {
+	if (!verifyArgs(args, 'init') && !verifyArgs(args, '', 'i')) {
 		return;
 	}
 
