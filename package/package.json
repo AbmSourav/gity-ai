@@ -1,0 +1,47 @@
+{
+  "name": "@abmsourav/gityai",
+  "version": "2.1.0",
+  "description": "Agentic AI CLI that writes your Git commit messages and pull request descriptions from your actual code changes, with an interactive refinement loop. Works with Google Gemini or Anthropic Claude.",
+  "bin": {
+    "gityai": "bin/gityai.js"
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "scripts/",
+    "README.md"
+  ],
+  "scripts": {
+    "postinstall": "node scripts/install.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "git",
+    "ai",
+    "cli",
+    "commit",
+    "commit-message",
+    "pull-request",
+    "gemini",
+    "claude",
+    "agentic"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AbmSourav/gity-ai.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AbmSourav/gity-ai/issues"
+  },
+  "homepage": "https://github.com/AbmSourav/gity-ai#readme",
+  "author": "Keramot <keramotul.islam@gmail.com>",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "adm-zip": "^0.5.18"
+  }
+}

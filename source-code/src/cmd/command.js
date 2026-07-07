@@ -7,6 +7,7 @@ import { model } from "./model.js";
 import { init } from "./init.js";
 import { commitMessage } from "./commitMessage.js";
 import { isSetup } from "../helper/isSetup.js";
+import { verifyArgs } from "../helper/verifyArgs.js";
 import { prDescription } from "./prDescription.js";
 import { projectInitialized } from "../helper/projectInitialized.js";
 

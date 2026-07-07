@@ -3,9 +3,10 @@ import { selectPrompt } from "../terminalUI/selectPrompt.js";
 import { generatePrDescription } from "./prDescription/generatePrDescription.js";
 import { handlePrompt } from "./prDescription/handlePrompt.js";
 import { savePrDescription } from "./prDescription/savePrDescription.js";
+import { verifyArgs } from "../helper/verifyArgs.js";
 
 export async function prDescription(args) {
-	if (args?._[0] !== "prd") {
+	if (!verifyArgs(args, 'prd')) {
 		return;
 	}
 

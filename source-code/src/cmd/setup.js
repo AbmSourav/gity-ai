@@ -2,6 +2,7 @@ import { dbConnection } from "../helper/dbConnection.js";
 import { textPrompt } from "../terminalUI/textPrompt.js";
 import { selectPrompt } from "../terminalUI/selectPrompt.js";
 import modelEnum from "../helper/modelEnum.js";
+import { verifyArgs } from "../helper/verifyArgs.js";
 
 async function getProviderApiKey(props) {
 	const title = props?.title || "Set Gemini AI API Key";
@@ -34,7 +35,7 @@ async function setApiKey(apiKey, provider) {
 }
 
 export async function setup(args, exit = true) {
-	if (args?._[0] !== "setup") {
+	if (!verifyArgs(args, 'setup')) {
 		return;
 	}
 
