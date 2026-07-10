@@ -1,6 +1,6 @@
 # GityAI
 
-GityAI is an agentic AI tool that automates Git workflows — it writes your commit messages and pull request descriptions from your actual code changes, and lets you "refine them in a loop" until they read exactly the way you want.
+GityAI is an AI assistant tool that automates Git workflows — it writes your commit messages and pull request descriptions from your actual code changes, and lets you "refine them in a loop" until they read exactly the way you want.
 
 > **Under the hood:** GityAI spans two JavaScript runtimes. The CLI is built in **Deno** and compiled to standalone, dependency-free native binaries for Linux, macOS, and Windows, using **Deno KV** for local state and a provider-agnostic client layer that routes to either Gemini or Claude. It's distributed through a separate tiny **Node.js** npm package that resolves the user's platform and pulls the matching binary from GitHub Releases at install time.
 
